@@ -11,9 +11,10 @@ build-job:
     script:
         - npm install
         - npm run build
+        - mv /build /public
     artifacts:
         paths:
-            - ./build
+            - ./public
 
 test-job:
   stage: test
