@@ -4,7 +4,8 @@ stages:
 build-job:
     stage: build
     image: node:lts
-    tags: [docker]
+    tags: 
+        - docker-pn
     script:
         - npm install
         - npm run build
