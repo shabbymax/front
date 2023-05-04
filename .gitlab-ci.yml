@@ -12,7 +12,6 @@ build-job:
         - npm run build
     artifacts:
         paths:
-            - ./node_modules
             - ./build
 
 test-job:
@@ -21,3 +20,19 @@ test-job:
       - docker-np
   script:
       - echo "test successful"
+
+deploy_staging:
+  stage: deploy
+  before_script:
+        - apt-get update -qq
+        - apt-get install -qq git
+  # Setup SSH deploy keys
+        - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+        - eval $(ssh-agent -s)
+        - ssh-add <(echo "$SSH_PRIVATE_KEY")
+        - mkdir -p ~/.ssh
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh fusion@158.160.102.242 "cd var/www/ && git checkout master && git pull origin master && exit"
+  only:
+    - main
