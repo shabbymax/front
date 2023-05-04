@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 build-job:
     stage: build
@@ -9,3 +10,10 @@ build-job:
     script:
         - npm install
         - npm run build
+
+test-job:
+  stage: test
+  tags:
+      - docker-pn
+  script:
+      - echo "test successful"
