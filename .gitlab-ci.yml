@@ -37,6 +37,6 @@ deploy_staging:
         - mkdir -p ~/.ssh
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh fusion@158.160.102.242 "cd var/www/ && git checkout master && git pull origin master && exit"
+    - ssh fusion@158.160.102.242 "cd /home/fusion/project_np && git checkout master && git pull origin master && exit"
   only:
     - main
