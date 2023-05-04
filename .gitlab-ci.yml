@@ -12,8 +12,8 @@ build-job:
         - npm run build
     artifacts:
         paths:
-            - /node_modules
-            - /build
+            - ./node_modules
+            - ./build
 
 test-job:
   stage: test
