@@ -37,6 +37,6 @@ deploy_staging:
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - ssh fusion@158.160.102.242 "sudo chown -R fusion:fusion /home/fusion/project_np"
-    - ssh fusion@158.160.102.242 "cd /home/fusion/project_np && git checkout main && git clone origin main && exit"
+    - ssh fusion@158.160.102.242 "cd /home/fusion/project_np && git checkout main && git pull origin && exit"
   only:
     - main
