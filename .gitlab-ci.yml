@@ -1,29 +1,4 @@
-stages:
-  - build
-  - test
-  - deploy
-
-build-job:
-    stage: build
-    image: node:lts
-    tags: 
-        - docker-np
-    script:
-        - npm install
-        - npm run build
-        - mv ./build ./public
-    artifacts:
-        paths:
-            - ./public
-
-test-job:
-  stage: test
-  tags:
-      - docker-np
-  script:
-      - echo "test successful"
-
-deploy_staging:
+deploy_job:
   stage: deploy
   tags:
     - docker-np
@@ -36,7 +11,6 @@ deploy_staging:
         - mkdir -p ~/.ssh
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh fusion@158.160.102.242 "sudo chown -R fusion:fusion /home/fusion/project_np"
-    - ssh fusion@158.160.102.242 "cd /home/fusion/project_np && git pull origin && JhRembo && glpat-VzPeV26HDFzZjAsoMg6N && exit"
+    
   only:
     - main
