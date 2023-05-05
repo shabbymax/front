@@ -11,6 +11,6 @@ deploy_job:
         - mkdir -p ~/.ssh
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - echo "член"
+    - echo "член пепенцев"
   only:
     - main
