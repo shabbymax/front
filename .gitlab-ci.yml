@@ -11,7 +11,7 @@ deploy_job:
         - mkdir -p ~/.ssh
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh -i $SSH_PRIVATE_KEY fusion@158.160.102.242 "cd /home/fusion/project_np/apps"
-    - ssh -i $SSH_PRIVATE_KEY fusion@158.160.102.242 "git clone origin"
+    - ssh fusion@158.160.102.242 "cd /home/fusion/project_np/apps"
+    - ssh fusion@158.160.102.242 "git clone origin"
   only:
     - main
