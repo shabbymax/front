@@ -1,3 +1,7 @@
+image: docker:latest
+stages:
+  - deploy
+
 deploy_job:
   stage: deploy
   tags:
