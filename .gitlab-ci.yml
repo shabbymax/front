@@ -16,6 +16,7 @@ deploy_job:
         - mkdir -p ~/.ssh
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
+    - ssh fusion@158.160.102.242 "ssh-add id_rsa-np"
     - ssh fusion@158.160.102.242 "cd /home/fusion/project_np/front; git pull origin main"
     #- ssh fusion@158.160.102.242 "git pull origin main"
   only:
