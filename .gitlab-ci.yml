@@ -12,6 +12,7 @@ deploy_job:
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - ssh fusion@158.160.102.242 "cd /home/fusion/project_np/front"
-    - ssh fusion@158.160.102.242 "git pull origin main"
-  #only:
-   # - main
+    - ssh fusion@158.160.102.242 "ll"
+    - ssh fusion@158.160.102.242 "git status"
+  only:
+    - main
