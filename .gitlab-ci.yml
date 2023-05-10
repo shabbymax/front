@@ -7,17 +7,17 @@ deploy_job:
   tags:
     - docker-np
   before_script:
-    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-
-    #- 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    #- 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
     #- eval $(ssh-agent -s)
     #- ssh-add <(echo "$SSH_PRIVATE_KEY")
     #- mkdir -p ~/.ssh
-    #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    #- chmod 700 ~/.ssh
+    #( apt-get install -qq openssh-client )
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - ssh fusion@158.160.102.242 "cd /home/fusion/project_np/front; ls -al"
   only:
