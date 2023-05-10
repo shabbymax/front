@@ -5,7 +5,7 @@ stages:
 deploy_job:
   stage: deploy
   #tags:
-    #- docker-np
+    #- docker_np
   before_script:
     #- 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
     #- eval $(ssh-agent -s)
