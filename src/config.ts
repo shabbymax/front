@@ -16,11 +16,11 @@ const config = {
 // eslint-disable-next-line default-case
 switch (envType) {
   case EnvTypes.production:
-    config.apiBaseUrl = '';
+    config.apiBaseUrl = 'http://localhost:4000';
     break;
 
   case EnvTypes.stage:
-    config.apiBaseUrl = '';
+    config.apiBaseUrl = 'http://localhost:4000';
     break;
 }
 
