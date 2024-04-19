@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('SSH connection') {
       steps {
-        withCredentials([sshUserPrivateKey(credentialsId: 'SSH-HOST', keyFileVariable: 'SSH-KEY', usernameVariable: 'SSH-USER'), string(credentialsId: 'SSH-HOST-IP', variable:'SSH-HOST-IP'), usernamePassword(credentialsId: 'DOCKERHUB-CRED', usernameVariable: 'DOCKERHUB-USRNAME', passwordVariable: 'DOCKERHUB-PSWD')]){
+        withCredentials([sshUserPrivateKey(credentialsId: 'SSH-HOST', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER'), string(credentialsId: 'SSH-HOST-IP', variable:'SSH_HOST_IP'), usernamePassword(credentialsId: 'DOCKERHUB-CRED', usernameVariable: 'DOCKERHUB_USRNAME', passwordVariable: 'DOCKERHUB_PSWD')]){
 	sh'''
-	  ssh -o StrictHostKeyChecking=no -i $SSH-KEY $SSH-USER@$SSH-HOST-IP "docker login -u $DOCKERHUB-USRNAME -p DOCKERHUB-PSWD"
+	  ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_USER@$SSH_HOST_IP "docker login -u $DOCKERHUB_USRNAME -p $DOCKERHUB_PSWD"
 	  ssh -o StrictHostKeyChecking=no -i $SSH-KEY $SSH-USER@$SSH-HOST-IP "docker pull shabbymax1/test-repo-1:firstimg"
 	  ssh -o StrictHostKeyChecking=no -i $SSH-KEY $SSH-USER@$SSH-HOST-IP "docker run -d -p 80:80 shabbymax1/test-repo-1:firstimg"
 	  ssh -o StrictHostKeyChecking=no -i $SSH-KEY $SSH-USER@$SSH-HOST-IP "docker logout"
